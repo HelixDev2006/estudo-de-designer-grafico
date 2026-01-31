@@ -1,0 +1,222 @@
+/* Accessibility Utilities */
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus Visible Override */
+:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  :root {
+    --text-primary: #000000;
+    --text-secondary: #2D3436;
+  }
+  
+  [data-theme="dark"] {
+    --text-primary: #FFFFFF;
+    --text-secondary: #E0E0E0;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Forced Colors Mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    border: 1px solid CanvasText;
+  }
+  
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px;
+  border-radius: 0 0 4px 0;
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--text-primary);
+  outline-offset: -3px;
+}
+
+/* Visually Hidden but Accessible */
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal;
+}
+
+/* Error Messages */
+.error-text {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Success Messages */
+.success-text {
+  color: var(--success-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Warning Messages */
+.warning-text {
+  color: var(--warning-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Accessible Form */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+label[aria-required="true"]::after {
+  content: ' *';
+  color: var(--error-color);
+}
+
+/* ARIA Live Region */
+[aria-live] {
+  position: relative;
+}
+
+[aria-live="polite"],
+[aria-live="assertive"] {
+  min-height: 1.5rem;
+}
+
+/* Loading Indicator Accessible */
+.loading-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid #E5E7EB;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+[aria-busy="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Keyboard Navigation Indicator */
+.keyboard-focus:focus-visible {
+  outline: 3px dashed var(--primary-color);
+  outline-offset: 4px;
+}
+
+/* Color Contrast Helper */
+.high-contrast {
+  filter: contrast(1.25);
+}
+
+/* Text Size Adjustment */
+[data-text-size="large"] {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+[data-text-size="x-large"] {
+  font-size: 1.5rem;
+  line-height: 1.9;
+}
+
+[data-text-size="xx-large"] {
+  font-size: 1.75rem;
+  line-height: 2;
+}
+
+/* Increased Letter Spacing */
+[data-letter-spacing="increased"] {
+  letter-spacing: 0.15em;
+}
+
+[data-letter-spacing="very-increased"] {
+  letter-spacing: 0.2em;
+}
+
+/* Increased Line Height */
+[data-line-height="increased"] {
+  line-height: 2;
+}
+
+[data-line-height="very-increased"] {
+  line-height: 2.5;
+}
